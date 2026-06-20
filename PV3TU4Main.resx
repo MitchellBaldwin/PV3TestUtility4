@@ -117,4 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="usbCommTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAICAQAAEABADoAgAAFgAAACgAAAAgAAAAQAAAAAEABAAAAAAAgAIAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAACAAACAAAAAgIAAgAAAAIAAgACAgAAAgICAAMDAwAAAAP8AAP8AAAD//wD/AAAA/wD/AP//
+        AAD///8AAABmYAAAAAAAAAAAYAAAAAAAZmAAAAAAAAAAZmAAAAAAAGZgAAAAAAAAZmAAAAAAAABmYAuw
+        AAAAALtmAAAAAAAAZmYLtgAAAAa7YAAAAAAAmZmZm7lmAABru7mZmZkACZmZmZu5kGYGa7u5mZmZkJmZ
+        mZmbu7u7BguZuZmZmZmZmZmZm7mZm7C7mbuZmZmZmZmZmZu5mZuwu5m7mZmZmZmZmZmbuZmbtruZu5mZ
+        mZmZmZmZm7mZm7u5mZu5mZmZmZmZmZu7u7sLuZmbuZmZmZmZmZmZmZmZCZmZmZmZmZmZmZmZAJmZmQmZ
+        mZmZmZmZmZmZmQAJmZkJmZmQCZmZmZmZmZmQAJmWBpmZAAmZmZmZmZmZmQAJlgaZkACZmZmZmZmZmZmQ
+        AGZmmQAJmZmZmQmZmZmZmQAAYAAAmZmZmZYJmZmZmZmQAGAACZmZmZmQAJmZmZmZAAAAAJmZmZmZYAAJ
+        mZmZkAAAAAAJmZmZlgAAAJmZmQAAAAAAAGmZmWYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADx//9/8f/8f/H/8f/xn/D/8I/h/8AD
+        wAOABIABAACgAAAAQAAAAEAAAAAAAAAAAAAAAIAAAACAAAAAgAAAAIAAAACAAAAAgAAAAAAAgAFgAIAA
+        AAHADAAB4B4YA/A+PAP//j////4////+P////j////4////+P////j////4//w==
+</value>
+  </data>
 </root>
