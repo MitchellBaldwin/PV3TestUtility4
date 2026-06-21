@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ScottPlot.Plottables;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -44,8 +45,13 @@ namespace PV3TestUtility4
       get { return pv3Data; }
       set { pv3Data = value; }
     }
+    
+    DataStreamer PProxDataStreamer;
+    DataStreamer VolumeDataStreamer;
+    DataStreamer FlowDataStreamer;
 
     PV3DataTypes.PV3CommandType cmd;
+
     public PV3TU4Main()
     {
       InitializeComponent();
@@ -84,6 +90,45 @@ namespace PV3TestUtility4
       {
         ConnectToUSB();
       }
+
+      PProxDataStreamer = PressuresPlot.Plot.Add.DataStreamer(1000, 0.002);
+      //PProxDataStreamer.LegendText = "PProx";
+      VolumeDataStreamer = VolFlowPlot.Plot.Add.DataStreamer(1000, 0.002);
+      //VolumeDataStreamer.LegendText = "Volume";
+      //VolFlowPlot.Refresh();
+      FlowDataStreamer = VolFlowPlot.Plot.Add.DataStreamer(1000, 0.002);
+      //FlowDataStreamer.LegendText = "Flow";
+      //VolFlowPlot.Refresh();
+
+      PressuresPlot.Plot.Axes.Bottom.Label.Text = "Time (s)";
+      PressuresPlot.Plot.Axes.Bottom.Label.Bold = false;
+      PressuresPlot.Plot.Axes.Bottom.Label.FontSize = 9;
+      PressuresPlot.Plot.Axes.Left.Label.Text = "Pressure (cmH2O)";
+      PressuresPlot.Plot.Axes.Left.Label.Bold = false;
+      PressuresPlot.Plot.Axes.Left.Label.FontSize = 9;
+
+      VolFlowPlot.Plot.Axes.Bottom.Label.Text = "Time (s)";
+      VolFlowPlot.Plot.Axes.Bottom.Label.Bold = false;
+      VolFlowPlot.Plot.Axes.Bottom.Label.FontSize = 9;
+      VolFlowPlot.Plot.Axes.Left.Label.Text = "Volume (mL)";
+      VolFlowPlot.Plot.Axes.Left.Label.Bold = false;
+      VolFlowPlot.Plot.Axes.Left.Label.FontSize = 9;
+      FlowDataStreamer.Axes.YAxis = VolFlowPlot.Plot.Axes.Right;
+      VolFlowPlot.Plot.Axes.Right.Label.Text = "Flow (L/min)";
+      VolFlowPlot.Plot.Axes.Right.Label.Bold = false;
+      VolFlowPlot.Plot.Axes.Right.Label.FontSize = 9;
+
+      PProxDataStreamer.ViewWipeRight(0.002);
+      PProxDataStreamer.Color = ScottPlot.Color.FromARGB(pproxDisplayLabel.ForeColor.ToArgb());
+
+      VolumeDataStreamer.ViewWipeRight(0.002);
+      VolumeDataStreamer.Color = ScottPlot.Color.FromARGB(VolumeRIGHTDisplayLabel.ForeColor.ToArgb());
+
+      FlowDataStreamer.IsVisible = true;
+      FlowDataStreamer.ViewWipeRight(0.002);
+      FlowDataStreamer.Color = ScottPlot.Color.FromARGB(RIGHTAirwayDisplayLabel.ForeColor.ToArgb());
+
+
     }
 
     #endregion Form Load and Closing
@@ -159,11 +204,6 @@ namespace PV3TestUtility4
       packageIntervalDisplayLabel.Text = ((double)avgPackageInterval / sampleSetsInPacket).ToString("0.0");
       avgPackageInterval = 0;
 
-
-      //usbConnection.sendViaUSB();
-      //usbConnection.receiveViaUSB();
-      //sampleSetsInPacket = usbConnection.InBuffer[3];
-
       maxPackageIntervalDisplayLabel.Text = maxPackageInterval.ToString();
 
       ch0DisplayLabel.Text = pv3Data.PPROXRaw.ToString();
@@ -202,6 +242,15 @@ namespace PV3TestUtility4
       rightLungTemperatureDisplayLabel.Text = pv3Data.TRGHT.ToString("0.000");
       fio2RawDisplayLabel.Text = pv3Data.FiO2Raw.ToString("X4");
       fio2DisplayLabel.Text = pv3Data.FiO2.ToString("0.0");
+
+      // Add new data points to the scrolling data stream plots and data structures:
+      PProxDataStreamer.Add(pv3Data.PPROX);
+      VolumeDataStreamer.Add(pv3Data.VLEFT + pv3Data.VRIGHT);
+      FlowDataStreamer.Add(pv3Data.FAWLEFT + pv3Data.FAWRIGHT);
+
+      // Refresh plot displays:
+      PressuresPlot.Refresh();
+      VolFlowPlot.Refresh();
 
     }
     private void ZeroAllButton_Click(object sender, EventArgs e)
@@ -274,7 +323,6 @@ namespace PV3TestUtility4
       pv3Data.ccLeft[3] = BitConverter.ToDouble(usbConnection.InBuffer, 26);
 
     }
-
     private void RightComplianceComboBox_SelectedIndexChanged(object sender, EventArgs e)
     {
       byte command = 0xE0;    // Right lung
@@ -291,6 +339,18 @@ namespace PV3TestUtility4
       pv3Data.ccRight[2] = BitConverter.ToDouble(usbConnection.InBuffer, 18);
       pv3Data.ccRight[3] = BitConverter.ToDouble(usbConnection.InBuffer, 26);
 
+    }
+    private void LeftResistorComboBox_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      ComboBox cb = (ComboBox)sender;
+      byte resistorValue = (byte)(cb.SelectedIndex);
+      pv3Data.LeftResistanceChanged(resistorValue);
+    }
+    private void RightResistorComboBox_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      ComboBox cb = (ComboBox)sender;
+      byte resistorValue = (byte)(cb.SelectedIndex);
+      pv3Data.RightResistanceChanged(resistorValue);
     }
 
     #endregion Form event handlers
@@ -415,18 +475,5 @@ namespace PV3TestUtility4
 
     #endregion USB Communications
 
-    private void LeftResistorComboBox_SelectedIndexChanged(object sender, EventArgs e)
-    {
-      ComboBox cb = (ComboBox)sender;
-      byte resistorValue = (byte)(cb.SelectedIndex);
-      pv3Data.LeftResistanceChanged(resistorValue);
-    }
-
-    private void RightResistorComboBox_SelectedIndexChanged(object sender, EventArgs e)
-    {
-      ComboBox cb = (ComboBox)sender;
-      byte resistorValue = (byte)(cb.SelectedIndex);
-      pv3Data.RightResistanceChanged(resistorValue);
-    }
   }
 }

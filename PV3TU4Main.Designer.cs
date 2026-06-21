@@ -31,6 +31,8 @@
       this.components = new System.ComponentModel.Container();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PV3TU4Main));
       this.USBPanel = new System.Windows.Forms.Panel();
+      this.lungSerialNumberDisplayLabel = new System.Windows.Forms.Label();
+      this.lungModelDisplayLabel = new System.Windows.Forms.Label();
       this.maxPackageIntervalUnitsLabel = new System.Windows.Forms.Label();
       this.packageIntervalUnitsLabel = new System.Windows.Forms.Label();
       this.maxPackageIntervalDisplayLabel = new System.Windows.Forms.Label();
@@ -49,6 +51,34 @@
       this.usbInDisplayLabel = new System.Windows.Forms.Label();
       this.usbOutDisplayLabel = new System.Windows.Forms.Label();
       this.MeasurementsDisplayPanel = new System.Windows.Forms.Panel();
+      this.SetReadHSCalibrationParametersButton = new System.Windows.Forms.Button();
+      this.RightComplianceUnitsLabel = new System.Windows.Forms.Label();
+      this.RightComplianceComboBox = new System.Windows.Forms.ComboBox();
+      this.LeftComplianceUnitsLabel = new System.Windows.Forms.Label();
+      this.LeftComplianceComboBox = new System.Windows.Forms.ComboBox();
+      this.RightResistorComboBox = new System.Windows.Forms.ComboBox();
+      this.LeftResistorComboBox = new System.Windows.Forms.ComboBox();
+      this.RIGHTAirwayFlowUnitsLabel = new System.Windows.Forms.Label();
+      this.LEFTAirwayFlowUnitsLabel = new System.Windows.Forms.Label();
+      this.VolumeRIGHTUnitsLabel = new System.Windows.Forms.Label();
+      this.VolumeLEFTUnitsLabel = new System.Windows.Forms.Label();
+      this.FiO2UnitsLabel = new System.Windows.Forms.Label();
+      this.RightLungTempUnitsLabel = new System.Windows.Forms.Label();
+      this.LeftLumgTempUnitsLabel = new System.Windows.Forms.Label();
+      this.AuxInUnitsLabel = new System.Windows.Forms.Label();
+      this.PHighUnitsLabel = new System.Windows.Forms.Label();
+      this.PRightUnitsLabel = new System.Windows.Forms.Label();
+      this.PLeftUnitsLabel = new System.Windows.Forms.Label();
+      this.PProxUnitsLabel = new System.Windows.Forms.Label();
+      this.ZeroAllButton = new System.Windows.Forms.Button();
+      this.RIGHTAirwayDisplayLabel = new System.Windows.Forms.Label();
+      this.LEFTAirwayDisplayLabel = new System.Windows.Forms.Label();
+      this.RIGHTAirwayFlowLabel = new System.Windows.Forms.Label();
+      this.LEFTAirwayFlowLabel = new System.Windows.Forms.Label();
+      this.VolumeRIGHTDisplayLabel = new System.Windows.Forms.Label();
+      this.VolumeLEFTDisplayLabel = new System.Windows.Forms.Label();
+      this.VolumeRIGHTLabel = new System.Windows.Forms.Label();
+      this.VolumeLEFTLabel = new System.Windows.Forms.Label();
       this.StartDAQButton = new System.Windows.Forms.Button();
       this.auxinDisplayLabel = new System.Windows.Forms.Label();
       this.ch4DisplayLabel = new System.Windows.Forms.Label();
@@ -75,38 +105,15 @@
       this.ch1Label = new System.Windows.Forms.Label();
       this.ch0Label = new System.Windows.Forms.Label();
       this.usbCommTimer = new System.Windows.Forms.Timer(this.components);
-      this.VolumeRIGHTDisplayLabel = new System.Windows.Forms.Label();
-      this.VolumeLEFTDisplayLabel = new System.Windows.Forms.Label();
-      this.VolumeRIGHTLabel = new System.Windows.Forms.Label();
-      this.VolumeLEFTLabel = new System.Windows.Forms.Label();
-      this.RIGHTAirwayDisplayLabel = new System.Windows.Forms.Label();
-      this.LEFTAirwayDisplayLabel = new System.Windows.Forms.Label();
-      this.RIGHTAirwayFlowLabel = new System.Windows.Forms.Label();
-      this.LEFTAirwayFlowLabel = new System.Windows.Forms.Label();
-      this.ZeroAllButton = new System.Windows.Forms.Button();
-      this.PProxUnitsLabel = new System.Windows.Forms.Label();
-      this.PLeftUnitsLabel = new System.Windows.Forms.Label();
-      this.PRightUnitsLabel = new System.Windows.Forms.Label();
-      this.PHighUnitsLabel = new System.Windows.Forms.Label();
-      this.AuxInUnitsLabel = new System.Windows.Forms.Label();
-      this.LeftLumgTempUnitsLabel = new System.Windows.Forms.Label();
-      this.RightLungTempUnitsLabel = new System.Windows.Forms.Label();
-      this.FiO2UnitsLabel = new System.Windows.Forms.Label();
-      this.VolumeLEFTUnitsLabel = new System.Windows.Forms.Label();
-      this.VolumeRIGHTUnitsLabel = new System.Windows.Forms.Label();
-      this.LEFTAirwayFlowUnitsLabel = new System.Windows.Forms.Label();
-      this.RIGHTAirwayFlowUnitsLabel = new System.Windows.Forms.Label();
-      this.LeftResistorComboBox = new System.Windows.Forms.ComboBox();
-      this.RightResistorComboBox = new System.Windows.Forms.ComboBox();
-      this.LeftComplianceComboBox = new System.Windows.Forms.ComboBox();
-      this.LeftComplianceUnitsLabel = new System.Windows.Forms.Label();
-      this.RightComplianceUnitsLabel = new System.Windows.Forms.Label();
-      this.RightComplianceComboBox = new System.Windows.Forms.ComboBox();
-      this.lungSerialNumberDisplayLabel = new System.Windows.Forms.Label();
-      this.lungModelDisplayLabel = new System.Windows.Forms.Label();
-      this.SetReadHSCalibrationParametersButton = new System.Windows.Forms.Button();
+      this.PlotsSplitContainer = new System.Windows.Forms.SplitContainer();
+      this.PressuresPlot = new ScottPlot.WinForms.FormsPlot();
+      this.VolFlowPlot = new ScottPlot.WinForms.FormsPlot();
       this.USBPanel.SuspendLayout();
       this.MeasurementsDisplayPanel.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.PlotsSplitContainer)).BeginInit();
+      this.PlotsSplitContainer.Panel1.SuspendLayout();
+      this.PlotsSplitContainer.Panel2.SuspendLayout();
+      this.PlotsSplitContainer.SuspendLayout();
       this.SuspendLayout();
       // 
       // USBPanel
@@ -132,10 +139,30 @@
       this.USBPanel.Controls.Add(this.usbInDisplayLabel);
       this.USBPanel.Controls.Add(this.usbOutDisplayLabel);
       this.USBPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.USBPanel.Location = new System.Drawing.Point(0, 766);
+      this.USBPanel.Location = new System.Drawing.Point(0, 1299);
       this.USBPanel.Name = "USBPanel";
-      this.USBPanel.Size = new System.Drawing.Size(2239, 237);
+      this.USBPanel.Size = new System.Drawing.Size(1976, 237);
       this.USBPanel.TabIndex = 86;
+      // 
+      // lungSerialNumberDisplayLabel
+      // 
+      this.lungSerialNumberDisplayLabel.AutoSize = true;
+      this.lungSerialNumberDisplayLabel.Location = new System.Drawing.Point(191, 202);
+      this.lungSerialNumberDisplayLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+      this.lungSerialNumberDisplayLabel.Name = "lungSerialNumberDisplayLabel";
+      this.lungSerialNumberDisplayLabel.Size = new System.Drawing.Size(246, 25);
+      this.lungSerialNumberDisplayLabel.TabIndex = 157;
+      this.lungSerialNumberDisplayLabel.Text = "Invalid Lung Serial Number";
+      // 
+      // lungModelDisplayLabel
+      // 
+      this.lungModelDisplayLabel.AutoSize = true;
+      this.lungModelDisplayLabel.Location = new System.Drawing.Point(2, 202);
+      this.lungModelDisplayLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+      this.lungModelDisplayLabel.Name = "lungModelDisplayLabel";
+      this.lungModelDisplayLabel.Size = new System.Drawing.Size(176, 25);
+      this.lungModelDisplayLabel.TabIndex = 156;
+      this.lungModelDisplayLabel.Text = "Invalid Lung Model";
       // 
       // maxPackageIntervalUnitsLabel
       // 
@@ -370,8 +397,318 @@
       this.MeasurementsDisplayPanel.Dock = System.Windows.Forms.DockStyle.Top;
       this.MeasurementsDisplayPanel.Location = new System.Drawing.Point(0, 0);
       this.MeasurementsDisplayPanel.Name = "MeasurementsDisplayPanel";
-      this.MeasurementsDisplayPanel.Size = new System.Drawing.Size(2239, 329);
+      this.MeasurementsDisplayPanel.Size = new System.Drawing.Size(1976, 329);
       this.MeasurementsDisplayPanel.TabIndex = 87;
+      // 
+      // SetReadHSCalibrationParametersButton
+      // 
+      this.SetReadHSCalibrationParametersButton.Location = new System.Drawing.Point(488, 264);
+      this.SetReadHSCalibrationParametersButton.Name = "SetReadHSCalibrationParametersButton";
+      this.SetReadHSCalibrationParametersButton.Size = new System.Drawing.Size(345, 46);
+      this.SetReadHSCalibrationParametersButton.TabIndex = 184;
+      this.SetReadHSCalibrationParametersButton.Text = "Read/Set HS Calibration Parameters";
+      this.SetReadHSCalibrationParametersButton.UseVisualStyleBackColor = true;
+      this.SetReadHSCalibrationParametersButton.Click += new System.EventHandler(this.SetReadHSCalibrationParametersButton_Click);
+      // 
+      // RightComplianceUnitsLabel
+      // 
+      this.RightComplianceUnitsLabel.AutoSize = true;
+      this.RightComplianceUnitsLabel.Location = new System.Drawing.Point(1493, 64);
+      this.RightComplianceUnitsLabel.Name = "RightComplianceUnitsLabel";
+      this.RightComplianceUnitsLabel.Size = new System.Drawing.Size(96, 25);
+      this.RightComplianceUnitsLabel.TabIndex = 183;
+      this.RightComplianceUnitsLabel.Text = "L/cmH2O";
+      // 
+      // RightComplianceComboBox
+      // 
+      this.RightComplianceComboBox.FormattingEnabled = true;
+      this.RightComplianceComboBox.Items.AddRange(new object[] {
+            "0.010",
+            "0.020",
+            "0.030",
+            "0.040",
+            "0.050",
+            "0.060",
+            "0.070",
+            "0.080",
+            "0.090",
+            "0.100"});
+      this.RightComplianceComboBox.Location = new System.Drawing.Point(1366, 57);
+      this.RightComplianceComboBox.Name = "RightComplianceComboBox";
+      this.RightComplianceComboBox.Size = new System.Drawing.Size(121, 32);
+      this.RightComplianceComboBox.TabIndex = 182;
+      this.RightComplianceComboBox.Text = "0.050";
+      this.RightComplianceComboBox.SelectedIndexChanged += new System.EventHandler(this.RightComplianceComboBox_SelectedIndexChanged);
+      // 
+      // LeftComplianceUnitsLabel
+      // 
+      this.LeftComplianceUnitsLabel.AutoSize = true;
+      this.LeftComplianceUnitsLabel.Location = new System.Drawing.Point(1493, 20);
+      this.LeftComplianceUnitsLabel.Name = "LeftComplianceUnitsLabel";
+      this.LeftComplianceUnitsLabel.Size = new System.Drawing.Size(96, 25);
+      this.LeftComplianceUnitsLabel.TabIndex = 181;
+      this.LeftComplianceUnitsLabel.Text = "L/cmH2O";
+      // 
+      // LeftComplianceComboBox
+      // 
+      this.LeftComplianceComboBox.FormattingEnabled = true;
+      this.LeftComplianceComboBox.Items.AddRange(new object[] {
+            "0.010",
+            "0.020",
+            "0.030",
+            "0.040",
+            "0.050",
+            "0.060",
+            "0.070",
+            "0.080",
+            "0.090",
+            "0.100"});
+      this.LeftComplianceComboBox.Location = new System.Drawing.Point(1366, 13);
+      this.LeftComplianceComboBox.Name = "LeftComplianceComboBox";
+      this.LeftComplianceComboBox.Size = new System.Drawing.Size(121, 32);
+      this.LeftComplianceComboBox.TabIndex = 180;
+      this.LeftComplianceComboBox.Text = "0.050";
+      this.LeftComplianceComboBox.SelectedIndexChanged += new System.EventHandler(this.LeftComplianceComboBox_SelectedIndexChanged);
+      // 
+      // RightResistorComboBox
+      // 
+      this.RightResistorComboBox.FormattingEnabled = true;
+      this.RightResistorComboBox.Items.AddRange(new object[] {
+            "Rp5",
+            "Rp20",
+            "Rp50"});
+      this.RightResistorComboBox.Location = new System.Drawing.Point(1404, 189);
+      this.RightResistorComboBox.Name = "RightResistorComboBox";
+      this.RightResistorComboBox.Size = new System.Drawing.Size(121, 32);
+      this.RightResistorComboBox.TabIndex = 179;
+      this.RightResistorComboBox.Text = "Rp20";
+      this.RightResistorComboBox.SelectedIndexChanged += new System.EventHandler(this.RightResistorComboBox_SelectedIndexChanged);
+      // 
+      // LeftResistorComboBox
+      // 
+      this.LeftResistorComboBox.FormattingEnabled = true;
+      this.LeftResistorComboBox.Items.AddRange(new object[] {
+            "Rp5",
+            "Rp20",
+            "Rp50"});
+      this.LeftResistorComboBox.Location = new System.Drawing.Point(1404, 144);
+      this.LeftResistorComboBox.Name = "LeftResistorComboBox";
+      this.LeftResistorComboBox.Size = new System.Drawing.Size(121, 32);
+      this.LeftResistorComboBox.TabIndex = 178;
+      this.LeftResistorComboBox.Text = "Rp20";
+      this.LeftResistorComboBox.SelectedIndexChanged += new System.EventHandler(this.LeftResistorComboBox_SelectedIndexChanged);
+      // 
+      // RIGHTAirwayFlowUnitsLabel
+      // 
+      this.RIGHTAirwayFlowUnitsLabel.AutoSize = true;
+      this.RIGHTAirwayFlowUnitsLabel.Location = new System.Drawing.Point(1308, 190);
+      this.RIGHTAirwayFlowUnitsLabel.Name = "RIGHTAirwayFlowUnitsLabel";
+      this.RIGHTAirwayFlowUnitsLabel.Size = new System.Drawing.Size(60, 25);
+      this.RIGHTAirwayFlowUnitsLabel.TabIndex = 177;
+      this.RIGHTAirwayFlowUnitsLabel.Text = "L/min";
+      // 
+      // LEFTAirwayFlowUnitsLabel
+      // 
+      this.LEFTAirwayFlowUnitsLabel.AutoSize = true;
+      this.LEFTAirwayFlowUnitsLabel.Location = new System.Drawing.Point(1308, 148);
+      this.LEFTAirwayFlowUnitsLabel.Name = "LEFTAirwayFlowUnitsLabel";
+      this.LEFTAirwayFlowUnitsLabel.Size = new System.Drawing.Size(60, 25);
+      this.LEFTAirwayFlowUnitsLabel.TabIndex = 176;
+      this.LEFTAirwayFlowUnitsLabel.Text = "L/min";
+      // 
+      // VolumeRIGHTUnitsLabel
+      // 
+      this.VolumeRIGHTUnitsLabel.AutoSize = true;
+      this.VolumeRIGHTUnitsLabel.Location = new System.Drawing.Point(1308, 56);
+      this.VolumeRIGHTUnitsLabel.Name = "VolumeRIGHTUnitsLabel";
+      this.VolumeRIGHTUnitsLabel.Size = new System.Drawing.Size(39, 25);
+      this.VolumeRIGHTUnitsLabel.TabIndex = 175;
+      this.VolumeRIGHTUnitsLabel.Text = "mL";
+      // 
+      // VolumeLEFTUnitsLabel
+      // 
+      this.VolumeLEFTUnitsLabel.AutoSize = true;
+      this.VolumeLEFTUnitsLabel.Location = new System.Drawing.Point(1308, 14);
+      this.VolumeLEFTUnitsLabel.Name = "VolumeLEFTUnitsLabel";
+      this.VolumeLEFTUnitsLabel.Size = new System.Drawing.Size(39, 25);
+      this.VolumeLEFTUnitsLabel.TabIndex = 174;
+      this.VolumeLEFTUnitsLabel.Text = "mL";
+      // 
+      // FiO2UnitsLabel
+      // 
+      this.FiO2UnitsLabel.AutoSize = true;
+      this.FiO2UnitsLabel.Location = new System.Drawing.Point(950, 104);
+      this.FiO2UnitsLabel.Name = "FiO2UnitsLabel";
+      this.FiO2UnitsLabel.Size = new System.Drawing.Size(30, 25);
+      this.FiO2UnitsLabel.TabIndex = 173;
+      this.FiO2UnitsLabel.Text = "%";
+      // 
+      // RightLungTempUnitsLabel
+      // 
+      this.RightLungTempUnitsLabel.AutoSize = true;
+      this.RightLungTempUnitsLabel.Location = new System.Drawing.Point(950, 56);
+      this.RightLungTempUnitsLabel.Name = "RightLungTempUnitsLabel";
+      this.RightLungTempUnitsLabel.Size = new System.Drawing.Size(35, 25);
+      this.RightLungTempUnitsLabel.TabIndex = 172;
+      this.RightLungTempUnitsLabel.Text = "°C";
+      // 
+      // LeftLumgTempUnitsLabel
+      // 
+      this.LeftLumgTempUnitsLabel.AutoSize = true;
+      this.LeftLumgTempUnitsLabel.Location = new System.Drawing.Point(950, 13);
+      this.LeftLumgTempUnitsLabel.Name = "LeftLumgTempUnitsLabel";
+      this.LeftLumgTempUnitsLabel.Size = new System.Drawing.Size(35, 25);
+      this.LeftLumgTempUnitsLabel.TabIndex = 171;
+      this.LeftLumgTempUnitsLabel.Text = "°C";
+      // 
+      // AuxInUnitsLabel
+      // 
+      this.AuxInUnitsLabel.AutoSize = true;
+      this.AuxInUnitsLabel.Location = new System.Drawing.Point(337, 196);
+      this.AuxInUnitsLabel.Name = "AuxInUnitsLabel";
+      this.AuxInUnitsLabel.Size = new System.Drawing.Size(60, 25);
+      this.AuxInUnitsLabel.TabIndex = 170;
+      this.AuxInUnitsLabel.Text = "V DC";
+      // 
+      // PHighUnitsLabel
+      // 
+      this.PHighUnitsLabel.AutoSize = true;
+      this.PHighUnitsLabel.Location = new System.Drawing.Point(336, 148);
+      this.PHighUnitsLabel.Name = "PHighUnitsLabel";
+      this.PHighUnitsLabel.Size = new System.Drawing.Size(37, 25);
+      this.PHighUnitsLabel.TabIndex = 169;
+      this.PHighUnitsLabel.Text = "psi";
+      // 
+      // PRightUnitsLabel
+      // 
+      this.PRightUnitsLabel.AutoSize = true;
+      this.PRightUnitsLabel.Location = new System.Drawing.Point(336, 101);
+      this.PRightUnitsLabel.Name = "PRightUnitsLabel";
+      this.PRightUnitsLabel.Size = new System.Drawing.Size(79, 25);
+      this.PRightUnitsLabel.TabIndex = 168;
+      this.PRightUnitsLabel.Text = "cmH2O";
+      // 
+      // PLeftUnitsLabel
+      // 
+      this.PLeftUnitsLabel.AutoSize = true;
+      this.PLeftUnitsLabel.Location = new System.Drawing.Point(336, 57);
+      this.PLeftUnitsLabel.Name = "PLeftUnitsLabel";
+      this.PLeftUnitsLabel.Size = new System.Drawing.Size(79, 25);
+      this.PLeftUnitsLabel.TabIndex = 167;
+      this.PLeftUnitsLabel.Text = "cmH2O";
+      // 
+      // PProxUnitsLabel
+      // 
+      this.PProxUnitsLabel.AutoSize = true;
+      this.PProxUnitsLabel.Location = new System.Drawing.Point(337, 14);
+      this.PProxUnitsLabel.Name = "PProxUnitsLabel";
+      this.PProxUnitsLabel.Size = new System.Drawing.Size(79, 25);
+      this.PProxUnitsLabel.TabIndex = 166;
+      this.PProxUnitsLabel.Text = "cmH2O";
+      // 
+      // ZeroAllButton
+      // 
+      this.ZeroAllButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+      this.ZeroAllButton.Enabled = false;
+      this.ZeroAllButton.Location = new System.Drawing.Point(15, 264);
+      this.ZeroAllButton.Name = "ZeroAllButton";
+      this.ZeroAllButton.Size = new System.Drawing.Size(166, 47);
+      this.ZeroAllButton.TabIndex = 165;
+      this.ZeroAllButton.Text = "Zero ALL";
+      this.ZeroAllButton.UseVisualStyleBackColor = false;
+      this.ZeroAllButton.Click += new System.EventHandler(this.ZeroAllButton_Click);
+      // 
+      // RIGHTAirwayDisplayLabel
+      // 
+      this.RIGHTAirwayDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.RIGHTAirwayDisplayLabel.ForeColor = System.Drawing.Color.Maroon;
+      this.RIGHTAirwayDisplayLabel.Location = new System.Drawing.Point(1198, 185);
+      this.RIGHTAirwayDisplayLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+      this.RIGHTAirwayDisplayLabel.Name = "RIGHTAirwayDisplayLabel";
+      this.RIGHTAirwayDisplayLabel.Size = new System.Drawing.Size(101, 48);
+      this.RIGHTAirwayDisplayLabel.TabIndex = 164;
+      this.RIGHTAirwayDisplayLabel.Text = "0.0";
+      this.RIGHTAirwayDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      // 
+      // LEFTAirwayDisplayLabel
+      // 
+      this.LEFTAirwayDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.LEFTAirwayDisplayLabel.ForeColor = System.Drawing.Color.Maroon;
+      this.LEFTAirwayDisplayLabel.Location = new System.Drawing.Point(1198, 141);
+      this.LEFTAirwayDisplayLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+      this.LEFTAirwayDisplayLabel.Name = "LEFTAirwayDisplayLabel";
+      this.LEFTAirwayDisplayLabel.Size = new System.Drawing.Size(101, 48);
+      this.LEFTAirwayDisplayLabel.TabIndex = 163;
+      this.LEFTAirwayDisplayLabel.Text = "0.0";
+      this.LEFTAirwayDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      // 
+      // RIGHTAirwayFlowLabel
+      // 
+      this.RIGHTAirwayFlowLabel.AutoSize = true;
+      this.RIGHTAirwayFlowLabel.Location = new System.Drawing.Point(1012, 190);
+      this.RIGHTAirwayFlowLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+      this.RIGHTAirwayFlowLabel.Name = "RIGHTAirwayFlowLabel";
+      this.RIGHTAirwayFlowLabel.Size = new System.Drawing.Size(185, 25);
+      this.RIGHTAirwayFlowLabel.TabIndex = 162;
+      this.RIGHTAirwayFlowLabel.Text = "RIGHT airway Flow:";
+      this.RIGHTAirwayFlowLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      // 
+      // LEFTAirwayFlowLabel
+      // 
+      this.LEFTAirwayFlowLabel.AutoSize = true;
+      this.LEFTAirwayFlowLabel.Location = new System.Drawing.Point(1012, 148);
+      this.LEFTAirwayFlowLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+      this.LEFTAirwayFlowLabel.Name = "LEFTAirwayFlowLabel";
+      this.LEFTAirwayFlowLabel.Size = new System.Drawing.Size(174, 25);
+      this.LEFTAirwayFlowLabel.TabIndex = 161;
+      this.LEFTAirwayFlowLabel.Text = "LEFT airway Flow:";
+      this.LEFTAirwayFlowLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      // 
+      // VolumeRIGHTDisplayLabel
+      // 
+      this.VolumeRIGHTDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.VolumeRIGHTDisplayLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+      this.VolumeRIGHTDisplayLabel.Location = new System.Drawing.Point(1198, 53);
+      this.VolumeRIGHTDisplayLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+      this.VolumeRIGHTDisplayLabel.Name = "VolumeRIGHTDisplayLabel";
+      this.VolumeRIGHTDisplayLabel.Size = new System.Drawing.Size(101, 48);
+      this.VolumeRIGHTDisplayLabel.TabIndex = 160;
+      this.VolumeRIGHTDisplayLabel.Text = "0";
+      this.VolumeRIGHTDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      // 
+      // VolumeLEFTDisplayLabel
+      // 
+      this.VolumeLEFTDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.VolumeLEFTDisplayLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+      this.VolumeLEFTDisplayLabel.Location = new System.Drawing.Point(1198, 9);
+      this.VolumeLEFTDisplayLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+      this.VolumeLEFTDisplayLabel.Name = "VolumeLEFTDisplayLabel";
+      this.VolumeLEFTDisplayLabel.Size = new System.Drawing.Size(101, 48);
+      this.VolumeLEFTDisplayLabel.TabIndex = 159;
+      this.VolumeLEFTDisplayLabel.Text = "0";
+      this.VolumeLEFTDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      // 
+      // VolumeRIGHTLabel
+      // 
+      this.VolumeRIGHTLabel.AutoSize = true;
+      this.VolumeRIGHTLabel.Location = new System.Drawing.Point(1036, 60);
+      this.VolumeRIGHTLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+      this.VolumeRIGHTLabel.Name = "VolumeRIGHTLabel";
+      this.VolumeRIGHTLabel.Size = new System.Drawing.Size(150, 25);
+      this.VolumeRIGHTLabel.TabIndex = 156;
+      this.VolumeRIGHTLabel.Text = "Volume RIGHT:";
+      this.VolumeRIGHTLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      // 
+      // VolumeLEFTLabel
+      // 
+      this.VolumeLEFTLabel.AutoSize = true;
+      this.VolumeLEFTLabel.Location = new System.Drawing.Point(1047, 16);
+      this.VolumeLEFTLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+      this.VolumeLEFTLabel.Name = "VolumeLEFTLabel";
+      this.VolumeLEFTLabel.Size = new System.Drawing.Size(139, 25);
+      this.VolumeLEFTLabel.TabIndex = 155;
+      this.VolumeLEFTLabel.Text = "Volume LEFT:";
+      this.VolumeLEFTLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
       // 
       // StartDAQButton
       // 
@@ -651,341 +988,46 @@
       this.usbCommTimer.Interval = 10;
       this.usbCommTimer.Tick += new System.EventHandler(this.usbCommTimer_Tick);
       // 
-      // VolumeRIGHTDisplayLabel
+      // PlotsSplitContainer
       // 
-      this.VolumeRIGHTDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.VolumeRIGHTDisplayLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-      this.VolumeRIGHTDisplayLabel.Location = new System.Drawing.Point(1198, 53);
-      this.VolumeRIGHTDisplayLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-      this.VolumeRIGHTDisplayLabel.Name = "VolumeRIGHTDisplayLabel";
-      this.VolumeRIGHTDisplayLabel.Size = new System.Drawing.Size(101, 48);
-      this.VolumeRIGHTDisplayLabel.TabIndex = 160;
-      this.VolumeRIGHTDisplayLabel.Text = "0";
-      this.VolumeRIGHTDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      this.PlotsSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.PlotsSplitContainer.Location = new System.Drawing.Point(0, 329);
+      this.PlotsSplitContainer.Name = "PlotsSplitContainer";
+      this.PlotsSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
       // 
-      // VolumeLEFTDisplayLabel
+      // PlotsSplitContainer.Panel1
       // 
-      this.VolumeLEFTDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.VolumeLEFTDisplayLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-      this.VolumeLEFTDisplayLabel.Location = new System.Drawing.Point(1198, 9);
-      this.VolumeLEFTDisplayLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-      this.VolumeLEFTDisplayLabel.Name = "VolumeLEFTDisplayLabel";
-      this.VolumeLEFTDisplayLabel.Size = new System.Drawing.Size(101, 48);
-      this.VolumeLEFTDisplayLabel.TabIndex = 159;
-      this.VolumeLEFTDisplayLabel.Text = "0";
-      this.VolumeLEFTDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      this.PlotsSplitContainer.Panel1.Controls.Add(this.PressuresPlot);
       // 
-      // VolumeRIGHTLabel
+      // PlotsSplitContainer.Panel2
       // 
-      this.VolumeRIGHTLabel.AutoSize = true;
-      this.VolumeRIGHTLabel.Location = new System.Drawing.Point(1036, 60);
-      this.VolumeRIGHTLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-      this.VolumeRIGHTLabel.Name = "VolumeRIGHTLabel";
-      this.VolumeRIGHTLabel.Size = new System.Drawing.Size(150, 25);
-      this.VolumeRIGHTLabel.TabIndex = 156;
-      this.VolumeRIGHTLabel.Text = "Volume RIGHT:";
-      this.VolumeRIGHTLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      this.PlotsSplitContainer.Panel2.Controls.Add(this.VolFlowPlot);
+      this.PlotsSplitContainer.Size = new System.Drawing.Size(1976, 970);
+      this.PlotsSplitContainer.SplitterDistance = 485;
+      this.PlotsSplitContainer.TabIndex = 88;
       // 
-      // VolumeLEFTLabel
+      // PressuresPlot
       // 
-      this.VolumeLEFTLabel.AutoSize = true;
-      this.VolumeLEFTLabel.Location = new System.Drawing.Point(1047, 16);
-      this.VolumeLEFTLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-      this.VolumeLEFTLabel.Name = "VolumeLEFTLabel";
-      this.VolumeLEFTLabel.Size = new System.Drawing.Size(139, 25);
-      this.VolumeLEFTLabel.TabIndex = 155;
-      this.VolumeLEFTLabel.Text = "Volume LEFT:";
-      this.VolumeLEFTLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      this.PressuresPlot.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.PressuresPlot.Location = new System.Drawing.Point(0, 0);
+      this.PressuresPlot.Name = "PressuresPlot";
+      this.PressuresPlot.Size = new System.Drawing.Size(1976, 485);
+      this.PressuresPlot.TabIndex = 0;
       // 
-      // RIGHTAirwayDisplayLabel
+      // VolFlowPlot
       // 
-      this.RIGHTAirwayDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.RIGHTAirwayDisplayLabel.ForeColor = System.Drawing.Color.Maroon;
-      this.RIGHTAirwayDisplayLabel.Location = new System.Drawing.Point(1198, 185);
-      this.RIGHTAirwayDisplayLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-      this.RIGHTAirwayDisplayLabel.Name = "RIGHTAirwayDisplayLabel";
-      this.RIGHTAirwayDisplayLabel.Size = new System.Drawing.Size(101, 48);
-      this.RIGHTAirwayDisplayLabel.TabIndex = 164;
-      this.RIGHTAirwayDisplayLabel.Text = "0.0";
-      this.RIGHTAirwayDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-      // 
-      // LEFTAirwayDisplayLabel
-      // 
-      this.LEFTAirwayDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.LEFTAirwayDisplayLabel.ForeColor = System.Drawing.Color.Maroon;
-      this.LEFTAirwayDisplayLabel.Location = new System.Drawing.Point(1198, 141);
-      this.LEFTAirwayDisplayLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-      this.LEFTAirwayDisplayLabel.Name = "LEFTAirwayDisplayLabel";
-      this.LEFTAirwayDisplayLabel.Size = new System.Drawing.Size(101, 48);
-      this.LEFTAirwayDisplayLabel.TabIndex = 163;
-      this.LEFTAirwayDisplayLabel.Text = "0.0";
-      this.LEFTAirwayDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-      // 
-      // RIGHTAirwayFlowLabel
-      // 
-      this.RIGHTAirwayFlowLabel.AutoSize = true;
-      this.RIGHTAirwayFlowLabel.Location = new System.Drawing.Point(1012, 190);
-      this.RIGHTAirwayFlowLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-      this.RIGHTAirwayFlowLabel.Name = "RIGHTAirwayFlowLabel";
-      this.RIGHTAirwayFlowLabel.Size = new System.Drawing.Size(185, 25);
-      this.RIGHTAirwayFlowLabel.TabIndex = 162;
-      this.RIGHTAirwayFlowLabel.Text = "RIGHT airway Flow:";
-      this.RIGHTAirwayFlowLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-      // 
-      // LEFTAirwayFlowLabel
-      // 
-      this.LEFTAirwayFlowLabel.AutoSize = true;
-      this.LEFTAirwayFlowLabel.Location = new System.Drawing.Point(1012, 148);
-      this.LEFTAirwayFlowLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-      this.LEFTAirwayFlowLabel.Name = "LEFTAirwayFlowLabel";
-      this.LEFTAirwayFlowLabel.Size = new System.Drawing.Size(174, 25);
-      this.LEFTAirwayFlowLabel.TabIndex = 161;
-      this.LEFTAirwayFlowLabel.Text = "LEFT airway Flow:";
-      this.LEFTAirwayFlowLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-      // 
-      // ZeroAllButton
-      // 
-      this.ZeroAllButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-      this.ZeroAllButton.Enabled = false;
-      this.ZeroAllButton.Location = new System.Drawing.Point(15, 264);
-      this.ZeroAllButton.Name = "ZeroAllButton";
-      this.ZeroAllButton.Size = new System.Drawing.Size(166, 47);
-      this.ZeroAllButton.TabIndex = 165;
-      this.ZeroAllButton.Text = "Zero ALL";
-      this.ZeroAllButton.UseVisualStyleBackColor = false;
-      this.ZeroAllButton.Click += new System.EventHandler(this.ZeroAllButton_Click);
-      // 
-      // PProxUnitsLabel
-      // 
-      this.PProxUnitsLabel.AutoSize = true;
-      this.PProxUnitsLabel.Location = new System.Drawing.Point(337, 14);
-      this.PProxUnitsLabel.Name = "PProxUnitsLabel";
-      this.PProxUnitsLabel.Size = new System.Drawing.Size(79, 25);
-      this.PProxUnitsLabel.TabIndex = 166;
-      this.PProxUnitsLabel.Text = "cmH2O";
-      // 
-      // PLeftUnitsLabel
-      // 
-      this.PLeftUnitsLabel.AutoSize = true;
-      this.PLeftUnitsLabel.Location = new System.Drawing.Point(336, 57);
-      this.PLeftUnitsLabel.Name = "PLeftUnitsLabel";
-      this.PLeftUnitsLabel.Size = new System.Drawing.Size(79, 25);
-      this.PLeftUnitsLabel.TabIndex = 167;
-      this.PLeftUnitsLabel.Text = "cmH2O";
-      // 
-      // PRightUnitsLabel
-      // 
-      this.PRightUnitsLabel.AutoSize = true;
-      this.PRightUnitsLabel.Location = new System.Drawing.Point(336, 101);
-      this.PRightUnitsLabel.Name = "PRightUnitsLabel";
-      this.PRightUnitsLabel.Size = new System.Drawing.Size(79, 25);
-      this.PRightUnitsLabel.TabIndex = 168;
-      this.PRightUnitsLabel.Text = "cmH2O";
-      // 
-      // PHighUnitsLabel
-      // 
-      this.PHighUnitsLabel.AutoSize = true;
-      this.PHighUnitsLabel.Location = new System.Drawing.Point(336, 148);
-      this.PHighUnitsLabel.Name = "PHighUnitsLabel";
-      this.PHighUnitsLabel.Size = new System.Drawing.Size(37, 25);
-      this.PHighUnitsLabel.TabIndex = 169;
-      this.PHighUnitsLabel.Text = "psi";
-      // 
-      // AuxInUnitsLabel
-      // 
-      this.AuxInUnitsLabel.AutoSize = true;
-      this.AuxInUnitsLabel.Location = new System.Drawing.Point(337, 196);
-      this.AuxInUnitsLabel.Name = "AuxInUnitsLabel";
-      this.AuxInUnitsLabel.Size = new System.Drawing.Size(60, 25);
-      this.AuxInUnitsLabel.TabIndex = 170;
-      this.AuxInUnitsLabel.Text = "V DC";
-      // 
-      // LeftLumgTempUnitsLabel
-      // 
-      this.LeftLumgTempUnitsLabel.AutoSize = true;
-      this.LeftLumgTempUnitsLabel.Location = new System.Drawing.Point(950, 13);
-      this.LeftLumgTempUnitsLabel.Name = "LeftLumgTempUnitsLabel";
-      this.LeftLumgTempUnitsLabel.Size = new System.Drawing.Size(35, 25);
-      this.LeftLumgTempUnitsLabel.TabIndex = 171;
-      this.LeftLumgTempUnitsLabel.Text = "°C";
-      // 
-      // RightLungTempUnitsLabel
-      // 
-      this.RightLungTempUnitsLabel.AutoSize = true;
-      this.RightLungTempUnitsLabel.Location = new System.Drawing.Point(950, 56);
-      this.RightLungTempUnitsLabel.Name = "RightLungTempUnitsLabel";
-      this.RightLungTempUnitsLabel.Size = new System.Drawing.Size(35, 25);
-      this.RightLungTempUnitsLabel.TabIndex = 172;
-      this.RightLungTempUnitsLabel.Text = "°C";
-      // 
-      // FiO2UnitsLabel
-      // 
-      this.FiO2UnitsLabel.AutoSize = true;
-      this.FiO2UnitsLabel.Location = new System.Drawing.Point(950, 104);
-      this.FiO2UnitsLabel.Name = "FiO2UnitsLabel";
-      this.FiO2UnitsLabel.Size = new System.Drawing.Size(30, 25);
-      this.FiO2UnitsLabel.TabIndex = 173;
-      this.FiO2UnitsLabel.Text = "%";
-      // 
-      // VolumeLEFTUnitsLabel
-      // 
-      this.VolumeLEFTUnitsLabel.AutoSize = true;
-      this.VolumeLEFTUnitsLabel.Location = new System.Drawing.Point(1308, 14);
-      this.VolumeLEFTUnitsLabel.Name = "VolumeLEFTUnitsLabel";
-      this.VolumeLEFTUnitsLabel.Size = new System.Drawing.Size(39, 25);
-      this.VolumeLEFTUnitsLabel.TabIndex = 174;
-      this.VolumeLEFTUnitsLabel.Text = "mL";
-      // 
-      // VolumeRIGHTUnitsLabel
-      // 
-      this.VolumeRIGHTUnitsLabel.AutoSize = true;
-      this.VolumeRIGHTUnitsLabel.Location = new System.Drawing.Point(1308, 56);
-      this.VolumeRIGHTUnitsLabel.Name = "VolumeRIGHTUnitsLabel";
-      this.VolumeRIGHTUnitsLabel.Size = new System.Drawing.Size(39, 25);
-      this.VolumeRIGHTUnitsLabel.TabIndex = 175;
-      this.VolumeRIGHTUnitsLabel.Text = "mL";
-      // 
-      // LEFTAirwayFlowUnitsLabel
-      // 
-      this.LEFTAirwayFlowUnitsLabel.AutoSize = true;
-      this.LEFTAirwayFlowUnitsLabel.Location = new System.Drawing.Point(1308, 148);
-      this.LEFTAirwayFlowUnitsLabel.Name = "LEFTAirwayFlowUnitsLabel";
-      this.LEFTAirwayFlowUnitsLabel.Size = new System.Drawing.Size(60, 25);
-      this.LEFTAirwayFlowUnitsLabel.TabIndex = 176;
-      this.LEFTAirwayFlowUnitsLabel.Text = "L/min";
-      // 
-      // RIGHTAirwayFlowUnitsLabel
-      // 
-      this.RIGHTAirwayFlowUnitsLabel.AutoSize = true;
-      this.RIGHTAirwayFlowUnitsLabel.Location = new System.Drawing.Point(1308, 190);
-      this.RIGHTAirwayFlowUnitsLabel.Name = "RIGHTAirwayFlowUnitsLabel";
-      this.RIGHTAirwayFlowUnitsLabel.Size = new System.Drawing.Size(60, 25);
-      this.RIGHTAirwayFlowUnitsLabel.TabIndex = 177;
-      this.RIGHTAirwayFlowUnitsLabel.Text = "L/min";
-      // 
-      // LeftResistorComboBox
-      // 
-      this.LeftResistorComboBox.FormattingEnabled = true;
-      this.LeftResistorComboBox.Items.AddRange(new object[] {
-            "Rp5",
-            "Rp20",
-            "Rp50"});
-      this.LeftResistorComboBox.Location = new System.Drawing.Point(1404, 144);
-      this.LeftResistorComboBox.Name = "LeftResistorComboBox";
-      this.LeftResistorComboBox.Size = new System.Drawing.Size(121, 32);
-      this.LeftResistorComboBox.TabIndex = 178;
-      this.LeftResistorComboBox.Text = "Rp20";
-      this.LeftResistorComboBox.SelectedIndexChanged += new System.EventHandler(this.LeftResistorComboBox_SelectedIndexChanged);
-      // 
-      // RightResistorComboBox
-      // 
-      this.RightResistorComboBox.FormattingEnabled = true;
-      this.RightResistorComboBox.Items.AddRange(new object[] {
-            "Rp5",
-            "Rp20",
-            "Rp50"});
-      this.RightResistorComboBox.Location = new System.Drawing.Point(1404, 189);
-      this.RightResistorComboBox.Name = "RightResistorComboBox";
-      this.RightResistorComboBox.Size = new System.Drawing.Size(121, 32);
-      this.RightResistorComboBox.TabIndex = 179;
-      this.RightResistorComboBox.Text = "Rp20";
-      this.RightResistorComboBox.SelectedIndexChanged += new System.EventHandler(this.RightResistorComboBox_SelectedIndexChanged);
-      // 
-      // LeftComplianceComboBox
-      // 
-      this.LeftComplianceComboBox.FormattingEnabled = true;
-      this.LeftComplianceComboBox.Items.AddRange(new object[] {
-            "0.010",
-            "0.020",
-            "0.030",
-            "0.040",
-            "0.050",
-            "0.060",
-            "0.070",
-            "0.080",
-            "0.090",
-            "0.100"});
-      this.LeftComplianceComboBox.Location = new System.Drawing.Point(1366, 13);
-      this.LeftComplianceComboBox.Name = "LeftComplianceComboBox";
-      this.LeftComplianceComboBox.Size = new System.Drawing.Size(121, 32);
-      this.LeftComplianceComboBox.TabIndex = 180;
-      this.LeftComplianceComboBox.Text = "0.050";
-      this.LeftComplianceComboBox.SelectedIndexChanged += new System.EventHandler(this.LeftComplianceComboBox_SelectedIndexChanged);
-      // 
-      // LeftComplianceUnitsLabel
-      // 
-      this.LeftComplianceUnitsLabel.AutoSize = true;
-      this.LeftComplianceUnitsLabel.Location = new System.Drawing.Point(1493, 20);
-      this.LeftComplianceUnitsLabel.Name = "LeftComplianceUnitsLabel";
-      this.LeftComplianceUnitsLabel.Size = new System.Drawing.Size(96, 25);
-      this.LeftComplianceUnitsLabel.TabIndex = 181;
-      this.LeftComplianceUnitsLabel.Text = "L/cmH2O";
-      // 
-      // RightComplianceUnitsLabel
-      // 
-      this.RightComplianceUnitsLabel.AutoSize = true;
-      this.RightComplianceUnitsLabel.Location = new System.Drawing.Point(1493, 64);
-      this.RightComplianceUnitsLabel.Name = "RightComplianceUnitsLabel";
-      this.RightComplianceUnitsLabel.Size = new System.Drawing.Size(96, 25);
-      this.RightComplianceUnitsLabel.TabIndex = 183;
-      this.RightComplianceUnitsLabel.Text = "L/cmH2O";
-      // 
-      // RightComplianceComboBox
-      // 
-      this.RightComplianceComboBox.FormattingEnabled = true;
-      this.RightComplianceComboBox.Items.AddRange(new object[] {
-            "0.010",
-            "0.020",
-            "0.030",
-            "0.040",
-            "0.050",
-            "0.060",
-            "0.070",
-            "0.080",
-            "0.090",
-            "0.100"});
-      this.RightComplianceComboBox.Location = new System.Drawing.Point(1366, 57);
-      this.RightComplianceComboBox.Name = "RightComplianceComboBox";
-      this.RightComplianceComboBox.Size = new System.Drawing.Size(121, 32);
-      this.RightComplianceComboBox.TabIndex = 182;
-      this.RightComplianceComboBox.Text = "0.050";
-      this.RightComplianceComboBox.SelectedIndexChanged += new System.EventHandler(this.RightComplianceComboBox_SelectedIndexChanged);
-      // 
-      // lungSerialNumberDisplayLabel
-      // 
-      this.lungSerialNumberDisplayLabel.AutoSize = true;
-      this.lungSerialNumberDisplayLabel.Location = new System.Drawing.Point(191, 202);
-      this.lungSerialNumberDisplayLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-      this.lungSerialNumberDisplayLabel.Name = "lungSerialNumberDisplayLabel";
-      this.lungSerialNumberDisplayLabel.Size = new System.Drawing.Size(246, 25);
-      this.lungSerialNumberDisplayLabel.TabIndex = 157;
-      this.lungSerialNumberDisplayLabel.Text = "Invalid Lung Serial Number";
-      // 
-      // lungModelDisplayLabel
-      // 
-      this.lungModelDisplayLabel.AutoSize = true;
-      this.lungModelDisplayLabel.Location = new System.Drawing.Point(2, 202);
-      this.lungModelDisplayLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-      this.lungModelDisplayLabel.Name = "lungModelDisplayLabel";
-      this.lungModelDisplayLabel.Size = new System.Drawing.Size(176, 25);
-      this.lungModelDisplayLabel.TabIndex = 156;
-      this.lungModelDisplayLabel.Text = "Invalid Lung Model";
-      // 
-      // SetReadHSCalibrationParametersButton
-      // 
-      this.SetReadHSCalibrationParametersButton.Location = new System.Drawing.Point(488, 264);
-      this.SetReadHSCalibrationParametersButton.Name = "SetReadHSCalibrationParametersButton";
-      this.SetReadHSCalibrationParametersButton.Size = new System.Drawing.Size(345, 46);
-      this.SetReadHSCalibrationParametersButton.TabIndex = 184;
-      this.SetReadHSCalibrationParametersButton.Text = "Read/Set HS Calibration Parameters";
-      this.SetReadHSCalibrationParametersButton.UseVisualStyleBackColor = true;
-      this.SetReadHSCalibrationParametersButton.Click += new System.EventHandler(this.SetReadHSCalibrationParametersButton_Click);
+      this.VolFlowPlot.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.VolFlowPlot.Location = new System.Drawing.Point(0, 0);
+      this.VolFlowPlot.Name = "VolFlowPlot";
+      this.VolFlowPlot.Size = new System.Drawing.Size(1976, 481);
+      this.VolFlowPlot.TabIndex = 0;
       // 
       // PV3TU4Main
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(2239, 1003);
+      this.ClientSize = new System.Drawing.Size(1976, 1536);
+      this.Controls.Add(this.PlotsSplitContainer);
       this.Controls.Add(this.USBPanel);
       this.Controls.Add(this.MeasurementsDisplayPanel);
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -996,6 +1038,10 @@
       this.USBPanel.PerformLayout();
       this.MeasurementsDisplayPanel.ResumeLayout(false);
       this.MeasurementsDisplayPanel.PerformLayout();
+      this.PlotsSplitContainer.Panel1.ResumeLayout(false);
+      this.PlotsSplitContainer.Panel2.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.PlotsSplitContainer)).EndInit();
+      this.PlotsSplitContainer.ResumeLayout(false);
       this.ResumeLayout(false);
 
     }
@@ -1077,6 +1123,9 @@
     private System.Windows.Forms.Label lungSerialNumberDisplayLabel;
     private System.Windows.Forms.Label lungModelDisplayLabel;
     private System.Windows.Forms.Button SetReadHSCalibrationParametersButton;
+    private System.Windows.Forms.SplitContainer PlotsSplitContainer;
+    private ScottPlot.WinForms.FormsPlot PressuresPlot;
+    private ScottPlot.WinForms.FormsPlot VolFlowPlot;
   }
 }
 
