@@ -474,6 +474,7 @@
       // 
       this.RightResistorComboBox.FormattingEnabled = true;
       this.RightResistorComboBox.Items.AddRange(new object[] {
+            "Rp0",
             "Rp5",
             "Rp20",
             "Rp50"});
@@ -488,6 +489,7 @@
       // 
       this.LeftResistorComboBox.FormattingEnabled = true;
       this.LeftResistorComboBox.Items.AddRange(new object[] {
+            "Rp0",
             "Rp5",
             "Rp20",
             "Rp50"});
@@ -495,7 +497,7 @@
       this.LeftResistorComboBox.Name = "LeftResistorComboBox";
       this.LeftResistorComboBox.Size = new System.Drawing.Size(121, 32);
       this.LeftResistorComboBox.TabIndex = 178;
-      this.LeftResistorComboBox.Text = "Rp20";
+      this.LeftResistorComboBox.Text = "Rp0";
       this.LeftResistorComboBox.SelectedIndexChanged += new System.EventHandler(this.LeftResistorComboBox_SelectedIndexChanged);
       // 
       // RIGHTAirwayFlowUnitsLabel

@@ -85,12 +85,20 @@ namespace PV3TestUtility4
     public double[] ccRight = new double[] { 0.000811874809, -0.074691255175, 2.301089012738, 27.441272849990 };
 
     // Airway pressure drop versus flow rate correlation coefficients (using coefficients for the A/I model lung with Rp20 resistor for defaukt values)
+    private double[] zeroAWCoefs = new double[]
+    {
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    };
+
     private double[] leftAWCoefs = new double[]
     {
-      -0.000217916079811409,
-      0.0191872307209381,
-      -0.591471116586059,
-      9.06706159376937
+      0.0,
+      0.0,
+      0.0,
+      0.0
     };
 
     private double[] rightAWCoefs = new double[]
@@ -476,17 +484,23 @@ namespace PV3TestUtility4
 
     public void LeftResistanceChanged(byte resistorValue)
     {
+      if (resistorValue == 0x00)
+      {
+        leftAWCoefs = zeroAWCoefs;
+        return;
+      }
+
       if (ttlModel == 1)
       {
         switch (resistorValue)
         {
-          case 0x00:
+          case 0x01:
             leftAWCoefs = awFCSLRp5;
             break;
-          case 0x01:
+          case 0x02:
             leftAWCoefs = awFCSLRp20;
             break;
-          case 0x02:
+          case 0x03:
             leftAWCoefs = awFCSLRp50;
             break;
           default:
@@ -498,13 +512,13 @@ namespace PV3TestUtility4
       {
         switch (resistorValue)
         {
-          case 0x00:
+          case 0x01:
             leftAWCoefs = awFCAIRp5;
             break;
-          case 0x01:
+          case 0x02:
             leftAWCoefs = awFCAIRp20;
             break;
-          case 0x02:
+          case 0x03:
             leftAWCoefs = awFCAIRp50;
             break;
           default:
@@ -516,13 +530,13 @@ namespace PV3TestUtility4
       {
         switch (resistorValue)
         {
-          case 0x00:
+          case 0x01:
             leftAWCoefs = awFCDARp5;
             break;
-          case 0x01:
+          case 0x02:
             leftAWCoefs = awFCDARp20;
             break;
-          case 0x02:
+          case 0x03:
             leftAWCoefs = awFCDARp50;
             break;
           default:
@@ -534,17 +548,23 @@ namespace PV3TestUtility4
 
     public void RightResistanceChanged(byte resistorValue)
     {
+      if (resistorValue == 0x00)
+      {
+        rightAWCoefs = zeroAWCoefs;
+        return;
+      }
+
       if (ttlModel == 1)
       {
         switch (resistorValue)
         {
-          case 0x00:
+          case 0x01:
             rightAWCoefs = awFCSLRp5;
             break;
-          case 0x01:
+          case 0x02:
             rightAWCoefs = awFCSLRp20;
             break;
-          case 0x02:
+          case 0x03:
             rightAWCoefs = awFCSLRp50;
             break;
           default:
@@ -556,13 +576,13 @@ namespace PV3TestUtility4
       {
         switch (resistorValue)
         {
-          case 0x00:
+          case 0x01:
             rightAWCoefs = awFCAIRp5;
             break;
-          case 0x01:
+          case 0x02:
             rightAWCoefs = awFCAIRp20;
             break;
-          case 0x02:
+          case 0x03:
             rightAWCoefs = awFCAIRp50;
             break;
           default:
@@ -574,13 +594,13 @@ namespace PV3TestUtility4
       {
         switch (resistorValue)
         {
-          case 0x00:
+          case 0x01:
             rightAWCoefs = awFCDARp5;
             break;
-          case 0x01:
+          case 0x02:
             rightAWCoefs = awFCDARp20;
             break;
-          case 0x02:
+          case 0x03:
             rightAWCoefs = awFCDARp50;
             break;
           default:

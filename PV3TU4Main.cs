@@ -91,41 +91,54 @@ namespace PV3TestUtility4
         ConnectToUSB();
       }
 
-      PProxDataStreamer = PressuresPlot.Plot.Add.DataStreamer(1000, 0.002);
+      PProxDataStreamer = PressuresPlot.Plot.Add.DataStreamer(1000, 0.010);
       //PProxDataStreamer.LegendText = "PProx";
-      VolumeDataStreamer = VolFlowPlot.Plot.Add.DataStreamer(1000, 0.002);
+      VolumeDataStreamer = VolFlowPlot.Plot.Add.DataStreamer(1000, 0.010);
       //VolumeDataStreamer.LegendText = "Volume";
       //VolFlowPlot.Refresh();
-      FlowDataStreamer = VolFlowPlot.Plot.Add.DataStreamer(1000, 0.002);
+      FlowDataStreamer = VolFlowPlot.Plot.Add.DataStreamer(1000, 0.010);
       //FlowDataStreamer.LegendText = "Flow";
       //VolFlowPlot.Refresh();
 
       PressuresPlot.Plot.Axes.Bottom.Label.Text = "Time (s)";
       PressuresPlot.Plot.Axes.Bottom.Label.Bold = false;
       PressuresPlot.Plot.Axes.Bottom.Label.FontSize = 9;
+      PressuresPlot.Plot.Axes.Bottom.Min = 0.0;
+      PressuresPlot.Plot.Axes.Bottom.Max = 10.0;
       PressuresPlot.Plot.Axes.Left.Label.Text = "Pressure (cmH2O)";
       PressuresPlot.Plot.Axes.Left.Label.Bold = false;
       PressuresPlot.Plot.Axes.Left.Label.FontSize = 9;
+      PressuresPlot.Plot.Axes.Left.Min = -20.0;
+      PressuresPlot.Plot.Axes.Left.Max = 120.00;
+      PressuresPlot.Plot.Axes.Left.Label.ForeColor = ScottPlot.Color.FromARGB(pproxDisplayLabel.ForeColor.ToArgb());
 
       VolFlowPlot.Plot.Axes.Bottom.Label.Text = "Time (s)";
       VolFlowPlot.Plot.Axes.Bottom.Label.Bold = false;
       VolFlowPlot.Plot.Axes.Bottom.Label.FontSize = 9;
+      VolFlowPlot.Plot.Axes.Bottom.Min = 0.0;
+      VolFlowPlot.Plot.Axes.Bottom.Max = 10.0;
       VolFlowPlot.Plot.Axes.Left.Label.Text = "Volume (mL)";
       VolFlowPlot.Plot.Axes.Left.Label.Bold = false;
       VolFlowPlot.Plot.Axes.Left.Label.FontSize = 9;
+      VolFlowPlot.Plot.Axes.Left.Min = 0.0;
+      VolFlowPlot.Plot.Axes.Left.Max = 1000.0;
+      VolFlowPlot.Plot.Axes.Left.Label.ForeColor = ScottPlot.Color.FromARGB(VolumeLEFTDisplayLabel.ForeColor.ToArgb());
       FlowDataStreamer.Axes.YAxis = VolFlowPlot.Plot.Axes.Right;
       VolFlowPlot.Plot.Axes.Right.Label.Text = "Flow (L/min)";
       VolFlowPlot.Plot.Axes.Right.Label.Bold = false;
       VolFlowPlot.Plot.Axes.Right.Label.FontSize = 9;
+      VolFlowPlot.Plot.Axes.Right.Min = -60.0;
+      VolFlowPlot.Plot.Axes.Right.Max = 60.0;
+      VolFlowPlot.Plot.Axes.Right.Label.ForeColor = ScottPlot.Color.FromARGB(RIGHTAirwayDisplayLabel.ForeColor.ToArgb());
 
-      PProxDataStreamer.ViewWipeRight(0.002);
+      PProxDataStreamer.ViewWipeRight(0.010);
       PProxDataStreamer.Color = ScottPlot.Color.FromARGB(pproxDisplayLabel.ForeColor.ToArgb());
 
-      VolumeDataStreamer.ViewWipeRight(0.002);
+      VolumeDataStreamer.ViewWipeRight(0.010);
       VolumeDataStreamer.Color = ScottPlot.Color.FromARGB(VolumeRIGHTDisplayLabel.ForeColor.ToArgb());
 
       FlowDataStreamer.IsVisible = true;
-      FlowDataStreamer.ViewWipeRight(0.002);
+      FlowDataStreamer.ViewWipeRight(0.010);
       FlowDataStreamer.Color = ScottPlot.Color.FromARGB(RIGHTAirwayDisplayLabel.ForeColor.ToArgb());
 
 
