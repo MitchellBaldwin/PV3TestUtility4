@@ -238,8 +238,6 @@ namespace PV3TestUtility4
       set { prght = value; }
     }
 
-    private double vleft;
-
     /// <summary>
     /// Helper function to calculate left volume
     /// </summary>
@@ -247,7 +245,7 @@ namespace PV3TestUtility4
     {
       return Math.Pow(lungPressure, 4) * ccLeft[3] + Math.Pow(lungPressure, 3) * ccLeft[2] + Math.Pow(lungPressure, 1) * ccLeft[1] + lungPressure * ccLeft[0];
     }
-
+    private double vleft;
     public double VLEFT
     {
       get
@@ -258,8 +256,6 @@ namespace PV3TestUtility4
       set { vleft = value; }
     }
 
-    private double vrght;
-
     /// <summary>
     /// Helper function to calculate right volume
     /// </summary>
@@ -267,7 +263,7 @@ namespace PV3TestUtility4
     {
       return Math.Pow(lungPressure, 4) * ccRight[3] + Math.Pow(lungPressure, 3) * ccRight[2] + Math.Pow(lungPressure, 2) * ccRight[1] + lungPressure * ccRight[0];
     }
-
+    private double vrght;
     public double VRIGHT
     {
       get

@@ -46,9 +46,9 @@ namespace PV3TestUtility4
                 // Read & display compliance coefficients:
                 cmd = PV3DataTypes.PV3CommandType.RD_HSSCD;
                 pv3Connection.OutBuffer[1] = (byte)cmd;
-                pv3Connection.sendViaUSB();
+                pv3Connection.SendViaUSB();
 
-                pv3Connection.receiveViaUSB();
+                pv3Connection.ReceiveViaUSB();
 
                 
             }
@@ -97,8 +97,8 @@ namespace PV3TestUtility4
                     pv3Connection.OutBuffer[i*8 + j + 2] = byteArray[j];
                 }
             }
-            pv3Connection.sendViaUSB();
-            pv3Connection.receiveViaUSB();
+            pv3Connection.SendViaUSB();
+            pv3Connection.ReceiveViaUSB();
             pv3tu4Main.DisplayUSBBufferData();
 
         }
@@ -118,9 +118,9 @@ namespace PV3TestUtility4
 
             pv3Connection.OutBuffer[1] = (byte)(command + currentCompliance);
 
-            pv3Connection.sendViaUSB();
+            pv3Connection.SendViaUSB();
 
-            pv3Connection.receiveViaUSB();
+            pv3Connection.ReceiveViaUSB();
             cc0DisplayLabel.Text = BitConverter.ToDouble(pv3Connection.InBuffer, 2).ToString();
             cc1DisplayLabel.Text = BitConverter.ToDouble(pv3Connection.InBuffer, 10).ToString();
             cc2DisplayLabel.Text = BitConverter.ToDouble(pv3Connection.InBuffer, 18).ToString();

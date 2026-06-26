@@ -21,7 +21,7 @@ namespace PV3TestUtility4
     internal const uint DBT_DEVICEREMOVECOMPLETE = 0x8004;
     internal const uint DBT_DEVNODES_CHANGED = 0x0007;
     internal const uint DBT_CONFIGCHANGED = 0x0018;
-    
+
     USBClass usbConnection;                         // Normal working connection (non-bootloader)
     public USBClass USBConnection
     {
@@ -147,6 +147,10 @@ namespace PV3TestUtility4
     #endregion Form Load and Closing
 
     #region Form event handlers
+    private void connectionStateLabel_Click(object sender, EventArgs e)
+    {
+      ConnectToUSB();
+    }
     private void usbCommTimer_Tick(object sender, EventArgs e)
     {
       byte packetNum = 0;
@@ -156,15 +160,15 @@ namespace PV3TestUtility4
 
       cmd = PV3DataTypes.PV3CommandType.RD_POT;
       usbConnection.OutBuffer[1] = (byte)cmd;
-      usbConnection.sendViaUSB();
-      usbConnection.receiveViaUSB();
+      usbConnection.SendViaUSB();
+      usbConnection.ReceiveViaUSB();
 
       Stopwatch stopwatch = Stopwatch.StartNew();
 
       cmd = PV3DataTypes.PV3CommandType.RD_HSSDP;
       usbConnection.OutBuffer[1] = (byte)cmd;
-      usbConnection.sendViaUSB();
-      usbConnection.receiveViaUSB();
+      usbConnection.SendViaUSB();
+      usbConnection.ReceiveViaUSB();
 
       int sampleSetsInPacket = usbConnection.InBuffer[3];
 
@@ -242,8 +246,8 @@ namespace PV3TestUtility4
 
       cmd = PV3DataTypes.PV3CommandType.RD_LSSDP;
       usbConnection.OutBuffer[1] = (byte)cmd;
-      usbConnection.sendViaUSB();
-      usbConnection.receiveViaUSB();
+      usbConnection.SendViaUSB();
+      usbConnection.ReceiveViaUSB();
 
       pv3Data.TLEFTRaw = (ushort)((uint)(usbConnection.InBuffer[3] << 8) + (uint)usbConnection.InBuffer[2]);
       pv3Data.TRGHTRaw = (ushort)((uint)(usbConnection.InBuffer[5] << 8) + (uint)usbConnection.InBuffer[4]);
@@ -270,8 +274,8 @@ namespace PV3TestUtility4
     {
       cmd = PV3DataTypes.PV3CommandType.RD_HSSDP;
       usbConnection.OutBuffer[1] = (byte)cmd;
-      usbConnection.sendViaUSB();
-      usbConnection.receiveViaUSB();
+      usbConnection.SendViaUSB();
+      usbConnection.ReceiveViaUSB();
       pv3Data.PPROXRaw = (ushort)((uint)(usbConnection.InBuffer[5] << 8) + (uint)usbConnection.InBuffer[4]);
       pv3Data.PPROXZero = pv3Data.PPROXRaw;
       pv3Data.PLEFTRaw = (ushort)((uint)(usbConnection.InBuffer[7] << 8) + (uint)usbConnection.InBuffer[6]);
@@ -290,8 +294,8 @@ namespace PV3TestUtility4
         // Start data acquisition:
         cmd = PV3DataTypes.PV3CommandType.START_DATA_ACQ;
         usbConnection.OutBuffer[1] = (byte)cmd;
-        usbConnection.sendViaUSB();
-        usbConnection.receiveViaUSB();
+        usbConnection.SendViaUSB();
+        usbConnection.ReceiveViaUSB();
         DisplayUSBBufferData();
         usbCommTimer.Enabled = true;
         dataStopwatch.Start();
@@ -306,8 +310,8 @@ namespace PV3TestUtility4
         // End data acquisition:
         cmd = PV3DataTypes.PV3CommandType.STOP_DATA_ACQ;
         usbConnection.OutBuffer[1] = (byte)cmd;
-        usbConnection.sendViaUSB();
-        usbConnection.receiveViaUSB();
+        usbConnection.SendViaUSB();
+        usbConnection.ReceiveViaUSB();
         DisplayUSBBufferData();
         usbCommTimer.Enabled = false;
         dataStopwatch.Stop();
@@ -327,8 +331,8 @@ namespace PV3TestUtility4
       byte currentCompliance = (byte)(cb.SelectedIndex + 1);
 
       usbConnection.OutBuffer[1] = (byte)(command + currentCompliance);
-      usbConnection.sendViaUSB();
-      usbConnection.receiveViaUSB();
+      usbConnection.SendViaUSB();
+      usbConnection.ReceiveViaUSB();
 
       pv3Data.ccLeft[0] = BitConverter.ToDouble(usbConnection.InBuffer, 2);
       pv3Data.ccLeft[1] = BitConverter.ToDouble(usbConnection.InBuffer, 10);
@@ -344,8 +348,8 @@ namespace PV3TestUtility4
       byte currentCompliance = (byte)(cb.SelectedIndex + 1);
 
       usbConnection.OutBuffer[1] = (byte)(command + currentCompliance);
-      usbConnection.sendViaUSB();
-      usbConnection.receiveViaUSB();
+      usbConnection.SendViaUSB();
+      usbConnection.ReceiveViaUSB();
 
       pv3Data.ccRight[0] = BitConverter.ToDouble(usbConnection.InBuffer, 2);
       pv3Data.ccRight[1] = BitConverter.ToDouble(usbConnection.InBuffer, 10);
@@ -365,6 +369,11 @@ namespace PV3TestUtility4
       byte resistorValue = (byte)(cb.SelectedIndex);
       pv3Data.RightResistanceChanged(resistorValue);
     }
+    private void SetReadHSCalibrationParametersButton_Click(object sender, EventArgs e)
+    {
+      HSSCalibDialog hsscd = new HSSCalibDialog();
+      hsscd.ShowDialog(this);
+    }
 
     #endregion Form event handlers
 
@@ -373,7 +382,7 @@ namespace PV3TestUtility4
     public bool ConnectToUSB()
     {
       System.Threading.Thread.Sleep(500);
-      usbConnection.connectionState = usbConnection.attemptUSBConnection();
+      usbConnection.connectionState = usbConnection.AttemptUSBConnection();
       if (usbConnection.connectionState == USBClass.CONNECTION_SUCCESSFUL)
       {
         connectionStateLabel.BackColor = Color.LimeGreen;
@@ -387,8 +396,8 @@ namespace PV3TestUtility4
         // Read and display lung model:
         cmd = PV3DataTypes.PV3CommandType.RD_LUNG_MODEL;
         usbConnection.OutBuffer[1] = (byte)cmd;
-        usbConnection.sendViaUSB();
-        usbConnection.receiveViaUSB();
+        usbConnection.SendViaUSB();
+        usbConnection.ReceiveViaUSB();
         pv3Data.ttlModel = usbConnection.InBuffer[2];
         switch (pv3Data.ttlModel)
         {
@@ -410,8 +419,8 @@ namespace PV3TestUtility4
         // Read and display lung serial number:
         cmd = PV3DataTypes.PV3CommandType.RD_LUNG_SN;
         usbConnection.OutBuffer[1] = (byte)cmd;
-        usbConnection.sendViaUSB();
-        usbConnection.receiveViaUSB();
+        usbConnection.SendViaUSB();
+        usbConnection.ReceiveViaUSB();
         pv3Data.ttlSN[0] = usbConnection.InBuffer[2];
         pv3Data.ttlSN[1] = usbConnection.InBuffer[3];
         lungSerialNumberDisplayLabel.Text = "SN " + (BitConverter.ToUInt16(pv3Data.ttlSN, 0)).ToString();
@@ -419,8 +428,8 @@ namespace PV3TestUtility4
         // Read high speed sensor channel calibration data:
         cmd = PV3DataTypes.PV3CommandType.RD_HSSCD;
         usbConnection.OutBuffer[1] = (byte)cmd;
-        usbConnection.sendViaUSB();
-        usbConnection.receiveViaUSB();
+        usbConnection.SendViaUSB();
+        usbConnection.ReceiveViaUSB();
         pv3Data.PPROXGain = (ushort)((uint)(usbConnection.InBuffer[3] << 8) + (uint)usbConnection.InBuffer[2]);
         pv3Data.PLEFTGain = (ushort)((uint)(usbConnection.InBuffer[5] << 8) + (uint)usbConnection.InBuffer[4]);
         pv3Data.PRGHTGain = (ushort)((uint)(usbConnection.InBuffer[7] << 8) + (uint)usbConnection.InBuffer[6]);
@@ -437,7 +446,7 @@ namespace PV3TestUtility4
         return true;
       }
 
-      blConnection.connectionState = blConnection.attemptUSBConnection();
+      blConnection.connectionState = blConnection.AttemptUSBConnection();
       if (blConnection.connectionState == USBClass.CONNECTION_SUCCESSFUL)
       {
         connectionStateLabel.BackColor = Color.LightBlue;
@@ -475,15 +484,6 @@ namespace PV3TestUtility4
       }
       usbOutDisplayLabel.Text = usbOutString;
       usbInDisplayLabel.Text = usbInString;
-    }
-    private void connectionStateLabel_Click(object sender, EventArgs e)
-    {
-      ConnectToUSB();
-    }
-    private void SetReadHSCalibrationParametersButton_Click(object sender, EventArgs e)
-    {
-      HSSCalibDialog hsscd = new HSSCalibDialog();
-      hsscd.ShowDialog(this);
     }
 
     #endregion USB Communications

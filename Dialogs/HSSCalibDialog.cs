@@ -49,9 +49,9 @@ namespace PV3TestUtility4
                 // Read & display low speed sensor calibration data:
                 cmd = PV3DataTypes.PV3CommandType.RD_HSSCD;
                 pv3Connection.OutBuffer[1] = (byte)cmd;
-                pv3Connection.sendViaUSB();
+                pv3Connection.SendViaUSB();
 
-                pv3Connection.receiveViaUSB();
+                pv3Connection.ReceiveViaUSB();
 
                 pv3Data.PPROXGain = (ushort)((uint)(pv3Connection.InBuffer[3] << 8) + (uint)pv3Connection.InBuffer[2]);
                 pproxGainDisplayLabel.Text = pv3Data.PPROXGain.ToString();
@@ -85,9 +85,9 @@ namespace PV3TestUtility4
         {
             cmd = PV3DataTypes.PV3CommandType.RD_HSSDP;
             pv3Connection.OutBuffer[1] = (byte)cmd;
-            pv3Connection.sendViaUSB();
+            pv3Connection.SendViaUSB();
 
-            pv3Connection.receiveViaUSB();
+            pv3Connection.ReceiveViaUSB();
             pv3Data.PPROXRaw = (ushort)((uint)(pv3Connection.InBuffer[5] << 8) + (uint)pv3Connection.InBuffer[4]);
             pproxZeroDisplayLabel.Text = pv3Data.PPROXRaw.ToString();
             pv3Data.PPROXZero = pv3Data.PPROXRaw;
@@ -146,8 +146,8 @@ namespace PV3TestUtility4
             byteGain[0] = (byte)(intGain % 256);
             pv3Connection.OutBuffer[2] = byteGain[0];
             pv3Connection.OutBuffer[3] = byteGain[1];
-            pv3Connection.sendViaUSB();
-            pv3Connection.receiveViaUSB();
+            pv3Connection.SendViaUSB();
+            pv3Connection.ReceiveViaUSB();
         }
 
         private void setPLEFTGainButton_Click(object sender, EventArgs e)
@@ -161,8 +161,8 @@ namespace PV3TestUtility4
             byteGain[0] = (byte)(intGain % 256);
             pv3Connection.OutBuffer[2] = byteGain[0];
             pv3Connection.OutBuffer[3] = byteGain[1];
-            pv3Connection.sendViaUSB();
-            pv3Connection.receiveViaUSB();
+            pv3Connection.SendViaUSB();
+            pv3Connection.ReceiveViaUSB();
         }
 
         private void setPRGHTGainButton_Click(object sender, EventArgs e)
@@ -176,8 +176,8 @@ namespace PV3TestUtility4
             byteGain[0] = (byte)(intGain % 256);
             pv3Connection.OutBuffer[2] = byteGain[0];
             pv3Connection.OutBuffer[3] = byteGain[1];
-            pv3Connection.sendViaUSB();
-            pv3Connection.receiveViaUSB();
+            pv3Connection.SendViaUSB();
+            pv3Connection.ReceiveViaUSB();
         }
 
         private void setPHIGHGainButton_Click(object sender, EventArgs e)
@@ -191,8 +191,8 @@ namespace PV3TestUtility4
             byteGain[0] = (byte)(intGain % 256);
             pv3Connection.OutBuffer[2] = byteGain[0];
             pv3Connection.OutBuffer[3] = byteGain[1];
-            pv3Connection.sendViaUSB();
-            pv3Connection.receiveViaUSB();
+            pv3Connection.SendViaUSB();
+            pv3Connection.ReceiveViaUSB();
         }
 
         private void setAUXINGainButton_Click(object sender, EventArgs e)
@@ -206,17 +206,17 @@ namespace PV3TestUtility4
             byteGain[0] = (byte)(intGain % 256);
             pv3Connection.OutBuffer[2] = byteGain[0];
             pv3Connection.OutBuffer[3] = byteGain[1];
-            pv3Connection.sendViaUSB();
-            pv3Connection.receiveViaUSB();
+            pv3Connection.SendViaUSB();
+            pv3Connection.ReceiveViaUSB();
         }
 
         private void readAllGainValuesButton_Click(object sender, EventArgs e)
         {
             cmd = PV3DataTypes.PV3CommandType.RD_HSSCD;
             pv3Connection.OutBuffer[1] = (byte)cmd;
-            pv3Connection.sendViaUSB();
+            pv3Connection.SendViaUSB();
             
-            pv3Connection.receiveViaUSB();
+            pv3Connection.ReceiveViaUSB();
             pv3Data.PPROXGain = (ushort)((uint)(pv3Connection.InBuffer[3] << 8) + (uint)pv3Connection.InBuffer[2]);
             pproxGainDisplayLabel.Text = pv3Data.PPROXGain.ToString();
             pv3Data.PLEFTGain = (ushort)((uint)(pv3Connection.InBuffer[5] << 8) + (uint)pv3Connection.InBuffer[4]);

@@ -44,9 +44,9 @@ namespace PV3TestUtility4
                 // Read & display low speed sensor calibration data:
                 cmd = PV3DataTypes.PV3CommandType.RD_LSSCD;
                 pv3Connection.OutBuffer[1] = (byte)cmd;
-                pv3Connection.sendViaUSB();
+                pv3Connection.SendViaUSB();
 
-                pv3Connection.receiveViaUSB();
+                pv3Connection.ReceiveViaUSB();
 
                 pv3Data.FiO2Zero = (ushort)((uint)(pv3Connection.InBuffer[11] << 8) + (uint)pv3Connection.InBuffer[10]);
                 fio2OffsetDisplayLabel.Text = pv3Data.FiO2Zero.ToString();
@@ -82,9 +82,9 @@ namespace PV3TestUtility4
                 // Read & display low speed sensor measurements:
                 cmd = PV3DataTypes.PV3CommandType.RD_LSSDP;
                 pv3Connection.OutBuffer[1] = (byte)cmd;
-                pv3Connection.sendViaUSB();
+                pv3Connection.SendViaUSB();
 
-                pv3Connection.receiveViaUSB();
+                pv3Connection.ReceiveViaUSB();
                 pv3Data.FiO2Raw = (ushort)((uint)(pv3Connection.InBuffer[7] << 8) + (uint)pv3Connection.InBuffer[6]);
                 fio2RawDisplayLabel.Text = pv3Data.FiO2Raw.ToString();
                 fio2MeasurementDisplayLabel.Text = pv3Data.FiO2.ToString("0.0");
@@ -109,8 +109,8 @@ namespace PV3TestUtility4
             byteOffset[0] = (byte)(intOffset % 256);
             pv3Connection.OutBuffer[2] = byteOffset[0];
             pv3Connection.OutBuffer[3] = byteOffset[1];
-            pv3Connection.sendViaUSB();
-            pv3Connection.receiveViaUSB();
+            pv3Connection.SendViaUSB();
+            pv3Connection.ReceiveViaUSB();
         }
 
         private void setFiO2GainButton_Click(object sender, EventArgs e)
@@ -124,8 +124,8 @@ namespace PV3TestUtility4
             byteGain[0] = (byte)(intGain % 256);
             pv3Connection.OutBuffer[2] = byteGain[0];
             pv3Connection.OutBuffer[3] = byteGain[1];
-            pv3Connection.sendViaUSB();
-            pv3Connection.receiveViaUSB();
+            pv3Connection.SendViaUSB();
+            pv3Connection.ReceiveViaUSB();
         }
 
         private void setTLEFTGainButton_Click(object sender, EventArgs e)
@@ -139,8 +139,8 @@ namespace PV3TestUtility4
             byteGain[0] = (byte)(intGain % 256);
             pv3Connection.OutBuffer[2] = byteGain[0];
             pv3Connection.OutBuffer[3] = byteGain[1];
-            pv3Connection.sendViaUSB();
-            pv3Connection.receiveViaUSB();
+            pv3Connection.SendViaUSB();
+            pv3Connection.ReceiveViaUSB();
         }
 
         private void setTRGHTGainButton_Click(object sender, EventArgs e)
@@ -154,8 +154,8 @@ namespace PV3TestUtility4
             byteGain[0] = (byte)(intGain % 256);
             pv3Connection.OutBuffer[2] = byteGain[0];
             pv3Connection.OutBuffer[3] = byteGain[1];
-            pv3Connection.sendViaUSB();
-            pv3Connection.receiveViaUSB();
+            pv3Connection.SendViaUSB();
+            pv3Connection.ReceiveViaUSB();
         }
     }
 }
