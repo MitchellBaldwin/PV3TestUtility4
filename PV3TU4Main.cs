@@ -36,7 +36,7 @@ namespace PV3TestUtility4
       set { blConnection = value; }
     }
 
-    Stopwatch dataStopwatch = new Stopwatch();
+    readonly Stopwatch dataStopwatch = new Stopwatch();
 
     PV3DataTypes pv3Data = new PV3DataTypes();
 
@@ -55,10 +55,14 @@ namespace PV3TestUtility4
     public PV3TU4Main()
     {
       InitializeComponent();
-      usbConnection = new USBClass();
-      usbConnection.deviceID = "Vid_04D8&Pid_FCB6";
-      blConnection = new USBClass();
-      blConnection.deviceID = "Vid_04D8&Pid_003C";
+      usbConnection = new USBClass
+      {
+        deviceID = "Vid_04D8&Pid_FCB6"
+      };
+      blConnection = new USBClass
+      {
+        deviceID = "Vid_04D8&Pid_003C"
+      };
     }
 
     // This is a callback function that gets called when a Windows message is received by the form.
@@ -373,6 +377,16 @@ namespace PV3TestUtility4
     {
       HSSCalibDialog hsscd = new HSSCalibDialog();
       hsscd.ShowDialog(this);
+    }
+    private void SetReadLSCalibrationParametersButton_Click(object sender, EventArgs e)
+    {
+      LSSCalibDialog lsscd = new LSSCalibDialog();
+      lsscd.ShowDialog(this);
+    }
+    private void ReadSetComplianceCalibrationCoefficientsButton_Click(object sender, EventArgs e)
+    {
+      CompCalibDialog ccd = new CompCalibDialog();
+      ccd.ShowDialog(this);
     }
 
     #endregion Form event handlers

@@ -60,7 +60,7 @@
     <ApplicationIcon>PV.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>AB4599EF2EC5F681459DDC96DCF7D9A425DAD552</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>4B3483AF7386BB5CDE709F5E7E9A4553E4F449A9</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>
@@ -71,6 +71,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>PV3TestUtility4.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HarfBuzzSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">

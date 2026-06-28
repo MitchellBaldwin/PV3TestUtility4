@@ -85,14 +85,6 @@ namespace PV3TestUtility4
     public double[] ccRight = new double[] { 0.000811874809, -0.074691255175, 2.301089012738, 27.441272849990 };
 
     // Airway pressure drop versus flow rate correlation coefficients (using coefficients for the A/I model lung with Rp20 resistor for defaukt values)
-    private double[] zeroAWCoefs = new double[]
-    {
-      0.0,
-      0.0,
-      0.0,
-      0.0
-    };
-
     private double[] leftAWCoefs = new double[]
     {
       0.0,
@@ -109,7 +101,15 @@ namespace PV3TestUtility4
       9.06706159376937
     };
 
-    private double[] awFCSLRp5 = new double[]
+    private readonly double[] zeroAWCoefs = new double[]
+    {
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    };
+
+    private readonly double[] awFCSLRp5 = new double[]
     {
       -0.011108739,
       0.386956116,
@@ -117,7 +117,7 @@ namespace PV3TestUtility4
       29.42858549
     };
 
-    private double[] awFCSLRp20 = new double[]
+    private readonly double[] awFCSLRp20 = new double[]
     {
       -0.000215128,
       0.019294681,
@@ -125,7 +125,7 @@ namespace PV3TestUtility4
       9.160610011
     }; 
     
-    private double[] awFCSLRp50 = new double[]
+    private readonly double[] awFCSLRp50 = new double[]
     {
       -2.89477E-06,
       0.000685456,
@@ -133,7 +133,7 @@ namespace PV3TestUtility4
       2.271806034
     };
 
-    private double[] awFCAIRp5 = new double[]
+    private readonly double[] awFCAIRp5 = new double[]
     {
       -0.011585568,
       0.395408849,
@@ -141,7 +141,7 @@ namespace PV3TestUtility4
       29.2937848
     };
 
-    private double[] awFCAIRp20 = new double[]
+    private readonly double[] awFCAIRp20 = new double[]
     {
       -0.000217916,
       0.019187231,
@@ -149,7 +149,7 @@ namespace PV3TestUtility4
       9.067061594
     };
 
-    private double[] awFCAIRp50 = new double[]
+    private readonly double[] awFCAIRp50 = new double[]
     {
       -2.93737E-06,
       0.000691326,
@@ -157,7 +157,7 @@ namespace PV3TestUtility4
       2.279627536
     };
 
-    private double[] awFCDARp5 = new double[]
+    private readonly double[] awFCDARp5 = new double[]
     {
       -0.006401364,
       0.234741479,
@@ -165,7 +165,7 @@ namespace PV3TestUtility4
       24.4329498
     };
 
-    private double[] awFCDARp20 = new double[]
+    private readonly double[] awFCDARp20 = new double[]
     {
       -0.000203878,
       0.017976849,
@@ -173,7 +173,7 @@ namespace PV3TestUtility4
       8.79453692
     };
 
-    private double[] awFCDARp50 = new double[]
+    private readonly double[] awFCDARp50 = new double[]
     {
       -2.86709E-06,
       0.00067353,
@@ -486,7 +486,7 @@ namespace PV3TestUtility4
         return;
       }
 
-      if (ttlModel == 1)
+      if (ttlModel == 1)  // Single lung model (FCSL)
       {
         switch (resistorValue)
         {
@@ -504,7 +504,7 @@ namespace PV3TestUtility4
             break;
         }
       }
-      else if (ttlModel == 2)
+      else if (ttlModel == 2) // Adult/Infant model (FCAI)
       {
         switch (resistorValue)
         {
@@ -522,7 +522,7 @@ namespace PV3TestUtility4
             break;
         }
       }
-      else if (ttlModel == 4)
+      else if (ttlModel == 4) // Dual adult model (FCDA)
       {
         switch (resistorValue)
         {
@@ -552,7 +552,7 @@ namespace PV3TestUtility4
 
       if (ttlModel == 1)
       {
-        switch (resistorValue)
+        switch (resistorValue)  // Single lung model (FCSL)
         {
           case 0x01:
             rightAWCoefs = awFCSLRp5;
@@ -568,7 +568,7 @@ namespace PV3TestUtility4
             break;
         }
       }
-      else if (ttlModel == 2)
+      else if (ttlModel == 2) // Adult/Infant model (FCAI)
       {
         switch (resistorValue)
         {
@@ -586,7 +586,7 @@ namespace PV3TestUtility4
             break;
         }
       }
-      else if (ttlModel == 4)
+      else if (ttlModel == 4) // Dual adult model (FCDA)
       {
         switch (resistorValue)
         {
